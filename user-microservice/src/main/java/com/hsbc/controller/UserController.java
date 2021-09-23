@@ -1,4 +1,4 @@
-package com.hsbc.user;
+package com.hsbc.controller;
 
 import com.hsbc.domain.User;
 import com.hsbc.service.UserService;
@@ -7,8 +7,10 @@ import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController()
@@ -58,16 +60,17 @@ public class UserController {
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Updates the given user", response = User.class)
 	})
-	@PutMapping("update")
-	public User update(@RequestBody User user){
+	@PutMapping()
+	public User update(@Valid @RequestBody User user){
 		return service.update(user);
 	}
 
 	@ApiResponses(value = {
 			@ApiResponse(code = 201, message = "Creates a new user", response = User.class)
 	})
-	@PostMapping("create")
-	public User create(@RequestBody User user){
+	@PostMapping()
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public User create(@Valid @RequestBody User user){
 		return service.create(user);
 	}
 

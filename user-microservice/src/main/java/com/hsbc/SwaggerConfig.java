@@ -15,7 +15,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.hsbc.user"))
+                .apis(RequestHandlerSelectors.basePackage("com.hsbc.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
