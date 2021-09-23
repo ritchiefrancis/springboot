@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 
 public class UserFilter extends ZuulFilter {
 
-  private static Logger log = LoggerFactory.getLogger(UserFilter.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserFilter.class);
 
   @Override
   public String filterType() {
@@ -31,7 +31,7 @@ public class UserFilter extends ZuulFilter {
     RequestContext ctx = RequestContext.getCurrentContext();
     HttpServletRequest request = ctx.getRequest();
 
-    log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
+    LOGGER.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
 
     return null;
   }
